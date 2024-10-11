@@ -17,16 +17,18 @@ Output: false
 from typing import List
 
 
+def has_duplicate(nums: List[int]) -> bool:
+    hash_set = set()
+    for i in nums:
+        if i in hash_set:
+            return True
+        hash_set.add(i)
+    return False
+
+
 class Solution:
-    def has_duplicate(self, nums: List[int]) -> bool:
-        hash_set = set()
-        for i in nums:
-            if i in hash_set:
-                return True
-            hash_set.add(i)
-        return False
+    pass
 
 
 if __name__ == '__main__':
-    sol = Solution()
-    print(sol.has_duplicate(nums=[1, 2, 3, 4, 4, 5, 6, 7, 8]))
+    print(has_duplicate(nums=[1, 2, 3, 4, 4, 5, 6, 7, 8]))
