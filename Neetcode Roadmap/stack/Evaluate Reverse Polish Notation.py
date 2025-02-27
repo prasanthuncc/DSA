@@ -37,6 +37,9 @@ def evalRPN(tokens: list[str]) -> int:
             elif i == '*':
                 result = a * b
             else:
+                # Here we cant use // coz // will round toward negative infinity for negative values like
+                # say we have -7//3 here we expect answer to be -3 (rounded towards zero) but it would be -4 (rounded towards -infinity)
+                # similarly say we get int(-0.1234/5) will give zero
                 result = int(b / a)
             s.append(str(result))
     return int(s.pop())
