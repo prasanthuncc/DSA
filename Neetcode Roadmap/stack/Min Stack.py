@@ -34,28 +34,44 @@ pop, top and getMin will always be called on non-empty stacks.
 """
 
 
+#
+# class MinStack:
+#     def __init__(self):
+#         self.data = []
+#         self.min = float('inf')
+#
+#     def push(self, val: int) -> None:
+#         self.min = min(self.min, val)
+#         self.data.append(val)
+#
+#     def pop(self) -> None:
+#         self.data.pop()
+#         self.min = float('inf')
+#         for i in self.data:
+#             self.min = min(self.min, i)
+#
+#     def top(self) -> int:
+#         return self.data[-1]
+#
+#     def getMin(self) -> int:
+#         return self.min
 
 class MinStack:
     def __init__(self):
         self.data = []
-        self.min = float('inf')
+        self.min = []
 
     def push(self, val: int) -> None:
-        self.min = min(self.min, val)
         self.data.append(val)
+        val = min(val, self.min[-1] if self.min else val)
+        self.min.append(val)
 
     def pop(self) -> None:
-        p = self.data.pop()
-        self.min = float('inf')
-        for i in self.data:
-            self.min = min(self.min, i)
+        self.data.pop()
+        self.min.pop()
 
     def top(self) -> int:
-        top = self.data.pop()
-        self.data.append(top)
-        return top
+        return self.data[-1]
 
     def getMin(self) -> int:
-        return self.min
-
-
+        return self.min[-1]
